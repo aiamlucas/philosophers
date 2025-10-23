@@ -5,6 +5,17 @@ philo
 compile_commands.json
 .clangd/
 .clangd_cache/
+.cache/
+
+# Neovim
+*.swp
+*.swo
+*.swx
+*~
+.session
+.netrwhist
+.undodir/
+.nvimundo/
 
 # OS junk
 .DS_Store
