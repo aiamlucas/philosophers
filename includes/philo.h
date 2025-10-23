@@ -5,4 +5,7 @@
 # include <limits.h>
 # include <stdlib.h>
 
+
+int	ft_safe_atoi(const char *str, int *result);
+
 #endif
