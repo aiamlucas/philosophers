@@ -1,0 +1,13 @@
+*.o
+philo
+
+# LSP / tooling
+compile_commands.json
+.clangd/
+.clangd_cache/
+
+# OS junk
+.DS_Store
+
+# for valgrind
+vgcore.*
