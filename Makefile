@@ -9,7 +9,7 @@ CFLAGS += -g -O0
 endif
 
 SRC = src/main.c
-# SRC += helpers/atoi.c
+SRC += helpers/ft_atoi_safe.c
 
 OBJ = $(SRC:.c=.o)
 
