@@ -4,6 +4,7 @@
 # include <stdio.h>
 # include <limits.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 typedef struct	s_logos
 {
@@ -11,9 +12,16 @@ typedef struct	s_logos
     int	time_to_die;
     int	time_to_eat; 
     int	time_to_sleep;
+	int	must_eat_count;
 }	t_logos;
 
 
-int	ft_safe_atoi(const char *str, int *result);
+bool	ft_isspace(int c);
+bool		ft_safe_atoi(const char *str, int *result);
+bool	validate_number_format(const char *str);
+bool	is_valid_integer(const char *str);
+int		validate_args(int argc, char *argv[]);
+bool	parse_logos(t_logos *logos, int argc, char *argv[]);
+bool	init_simulation(t_logos *logos);
 
 #endif
