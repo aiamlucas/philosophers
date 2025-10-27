@@ -12,16 +12,23 @@ bool	simulation_ended(t_data *data)
 
 bool	all_philos_ate_enough(t_data *data)
 {
-	int	i;
-	
+	int		i;
+	bool	result;
+
+	pthread_mutex_lock(&data->death_mutex);
 	i = 0;
+	result = true;
 	while (i < data->n_philos)
 	{
 		if (data->philos[i].meals_eaten < data->must_eat_count)
-			return (false);
+		{
+			result = false;
+			break;
+		}
 		i++;
 	}
-	return (true);
+	pthread_mutex_unlock(&data->death_mutex);
+	return (result);
 }
 
 void	monitor_simulation(t_data *data)
