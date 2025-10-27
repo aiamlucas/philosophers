@@ -107,7 +107,7 @@ bool	parse_logos(t_logos *logos, int argc, char *argv[])
 		return (false);
 	if (!ft_safe_atoi(argv[3], &logos->time_to_eat))
 		return (false);
-	if (!ft_safe_atoi(argv[3], &logos->time_to_sleep))
+	if (!ft_safe_atoi(argv[4], &logos->time_to_sleep))
 		return (false);
 	if (argc == 6)
 	{

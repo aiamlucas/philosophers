@@ -1,17 +1,34 @@
 #include "philo.h"
 
-void	cleanup(t_data *data)
+static void	destroy_mutexes(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < data->n_philos)
+	if (data->chopsticks)
 	{
-		pthread_mutex_destroy(&data->chopsticks[i]);
-		i++;
+		while (i < data->n_philos)
+		{
+			pthread_mutex_destroy(&data->chopsticks[i]);
+			i++;
+		}
 	}
 	pthread_mutex_destroy(&data->print_mutex);
 	pthread_mutex_destroy(&data->death_mutex);
-	free(data->chopsticks);
-	free(data->philos);
+}
+
+void	cleanup(t_data *data)
+{
+	destroy_mutexes(data);
+
+	if (data->chopsticks)
+	{
+		free(data->chopsticks);
+		data->chopsticks = NULL;
+	}
+	if (data->philos)
+	{
+		free(data->philos);
+		data->philos = NULL;
+	}
 }

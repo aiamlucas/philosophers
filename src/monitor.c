@@ -48,7 +48,7 @@ void	monitor_simulation(t_data *data)
 		}
 		if (data->must_eat_count != -1 && all_philos_ate_enough(data))
 		{
-			pthread_mutex_unlock(&data->death_mutex);
+			pthread_mutex_lock(&data->death_mutex);
 			data->dead_flag = 1;
 			pthread_mutex_unlock(&data->death_mutex);
 			return ;
