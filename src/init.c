@@ -1,6 +1,6 @@
 #include "philo.h"
 
-static void	cleanup_partial_init(t_data *data, int stage)
+void	cleanup_partial_init(t_data *data, int stage)
 {
 	int	i;
 
@@ -38,7 +38,6 @@ bool	init_simulation(t_logos *logos)
 
 bool	init_data(t_data *data, t_logos *logos)
 {
-	int	i;
 	data->chopsticks = NULL;
 	data->philos = NULL;
 	data->n_philos = logos->n_philos;
@@ -48,46 +47,11 @@ bool	init_data(t_data *data, t_logos *logos)
 	data->must_eat_count = logos->must_eat_count;
 	data->start_time = get_time_ms();
 	data->dead_flag = 0;
-	data->chopsticks = malloc(sizeof(pthread_mutex_t) * data->n_philos);
-	if (!data->chopsticks)
+	if (!init_chopsticks(data))
 		return (false);
-	i = 0;
-	while (i < data->n_philos)
-	{
-		if (pthread_mutex_init(&data->chopsticks[i], NULL) != 0)
-		{
-			data->n_philos = i;
-			cleanup_partial_init(data, 1);
-			return (false);
-		}
-		i++;
-	}
-	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
-	{
-		cleanup_partial_init(data, 1);
+	if (!init_mutexes(data))
 		return (false);
-	}
-	if (pthread_mutex_init(&data->death_mutex, NULL) != 0)
-	{
-		cleanup_partial_init(data, 2);
+	if (!init_philosophers(data))
 		return (false);
-	}
-	data->philos = malloc(sizeof(t_philo) * data->n_philos);
-	if (!data->philos)
-	{
-		cleanup_partial_init(data, 3);
-		return (false);
-	}
-	i = 0;
-	while (i < data->n_philos)
-	{
-		data->philos[i].id = i + 1;
-		data->philos[i].left_chopstick = i;
-		data->philos[i].right_chopstick = (i + 1) % data->n_philos;
-		data->philos[i].last_meal_time = data->start_time;
-		data->philos[i].meals_eaten = 0;
-		data->philos[i].data = data;
-		i++;
-	}
 	return (true);
 }

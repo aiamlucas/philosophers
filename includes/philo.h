@@ -53,6 +53,9 @@ bool		validate_args(int argc, char *argv[]);
 bool		parse_logos(t_logos *logos, int argc, char *argv[]);
 bool		init_simulation(t_logos *logos);
 bool		init_data(t_data *data, t_logos *logos);
+bool		init_chopsticks(t_data *data);
+bool		init_mutexes(t_data *data);
+bool		init_philosophers(t_data *data);
 long long	get_time_ms(void);
 void		ft_usleep_check(t_data *data, long long milliseconds);
 void		*philosopher_routine(void *arg);
@@ -62,6 +65,7 @@ void		drop_chopsticks(t_philo *philo);
 void		monitor_simulation(t_data *data);
 bool		simulation_ended(t_data *data);
 bool		all_philos_ate_enough(t_data *data);
+void		cleanup_partial_init(t_data *data, int stage);
 void		cleanup(t_data *data);
 
 #endif
