@@ -23,15 +23,19 @@ void	ft_usleep_check(t_data *data, long long milliseconds)
 
 void	print_status(t_philo *philo, char *status)
 {
-	long long timestamp;
+	long long	timestamp;
+	bool		is_dead;
 
-	pthread_mutex_lock(&philo->data->print_mutex);
-	if (!philo->data->dead_flag)
+	pthread_mutex_lock(&philo->data->death_mutex);
+	is_dead = philo->data->dead_flag;
+	pthread_mutex_unlock(&philo->data->death_mutex);
+	if (!is_dead)
 	{
+		pthread_mutex_lock(&philo->data->print_mutex);
 		timestamp = get_time_ms() - philo->data->start_time;
 		printf("%lld %d %s\n", timestamp, philo->id, status);
+		pthread_mutex_unlock(&philo->data->print_mutex);
 	}
-	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
 void	take_chopsticks(t_philo *philo)
