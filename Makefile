@@ -12,9 +12,11 @@ SRC = src/main.c
 SRC += src/init.c
 SRC += src/parser.c
 SRC += src/utils.c
+SRC += src/cleanup.c
+SRC += src/monitor.c
+SRC += src/philosopher.c
 SRC += helpers/ft_atoi_safe.c
 SRC += helpers/ft_isspace.c
-
 
 OBJ = $(SRC:.c=.o)
 

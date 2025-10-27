@@ -27,7 +27,9 @@ bool	is_valid_integer(const char *str)
 	if (!*str)
 		return (false);
 	num_start = str;
-	if (*str == '+' || *str == '-')
+	if (*str == '-')
+		return (false);
+	if (*str == '+')
 		str++;
 	if (!*str || !(*str >= '0' && *str <= '9'))
 		return (false);
@@ -36,7 +38,7 @@ bool	is_valid_integer(const char *str)
 	return (ft_safe_atoi(num_start, &dummy_value));
 }
 
-int	validate_args(int argc, char *argv[])
+bool	validate_args(int argc, char *argv[])
 {
 	int	i;
 

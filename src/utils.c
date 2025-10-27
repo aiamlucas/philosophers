@@ -8,13 +8,17 @@ long long	get_time_ms(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	ft_usleep(long long milliseconds)
+void	ft_usleep_check(t_data *data, long long milliseconds)
 {
 	long long start;
 
 	start = get_time_ms();
 	while (get_time_ms() - start < milliseconds)
+	{
+		if (simulation_ended(data))
+			return ;
 		usleep(500);
+	}
 }
 
 void	print_status(t_philo *philo, char *status)
