@@ -8,55 +8,82 @@ static void	handle_single_philo(t_data *data)
 	printf("%d 1 died\n", data->time_to_die);
 }
 
+static bool	init_program(t_logos *logos, t_data *data, int argc, char *argv[])
+{
+	if (!validate_args(argc, argv))
+		return (false);
+	if (!parse_logos(logos, argc, argv))
+		return (false);
+	if (!init_simulation(logos))
+		return (false);
+	if (!init_data(data, logos))
+	{
+		printf("Error: failed to initialize data\n");
+		return (false);
+	}
+	return (true);
+}
+
+static bool	create_threads(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->n_philos)
+	{
+		if (pthread_create(&data->philos[i].thread, NULL, philosopher_routine, &data->philos[i]) != 0)
+		{
+			printf("Error: failed to create philosopher thread %d\n", i + 1);
+			data->dead_flag = 1;
+			j = 0;
+			while (j < i)
+			{
+				pthread_join(data->philos[j].thread, NULL);
+				j++;
+			}
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
+static void	join_threads(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->n_philos)
+	{
+		pthread_join(data->philos[i].thread, NULL);
+		i++;
+	}
+}
+
+
+
 int main(int argc, char *argv[])
 {
 	t_logos	logos;
 	t_data	data;
-	int		i;
 
-	if (!validate_args(argc, argv))
+	if (!init_program(&logos, &data, argc, argv))
 		return (EXIT_FAILURE);
-	if (!parse_logos(&logos, argc, argv))
-		return (EXIT_FAILURE);
-	if (!init_simulation(&logos))
-		return (EXIT_FAILURE);
-	if (!init_data(&data, &logos))
-	{
-		printf("Error: failed to initialize data\n");
-		return (EXIT_FAILURE);
-	}
 	if (data.n_philos == 1)
 	{
 		handle_single_philo(&data);
 		cleanup(&data);
 		return (EXIT_SUCCESS);
 	}
-	i = 0;
-	while (i < data.n_philos)
+	if (!create_threads(&data))
 	{
-		if (pthread_create(&data.philos[i].thread, NULL, philosopher_routine, &data.philos[i]) != 0)
-		{
-			printf("Error: failed to create philosopher thread %d\n", i + 1);
-			data.dead_flag = 1;
-			int j = 0;
-			while (j < i)
-			{
-				pthread_join(data.philos[j].thread, NULL);
-				j++;
-			}
-			cleanup(&data);
-			return (EXIT_FAILURE);
-		}
-		i++;
+		cleanup(&data);
+		return (EXIT_FAILURE);
 	}
 	monitor_simulation(&data);
 	usleep(10000);
-	i = 0;
-	while (i < data.n_philos)
-	{
-		pthread_join(data.philos[i].thread, NULL);
-		i++;
-	}
+	join_threads(&data);
 	cleanup(&data);
 	return (EXIT_SUCCESS);
 }
