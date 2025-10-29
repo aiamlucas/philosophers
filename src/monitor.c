@@ -31,9 +31,28 @@ bool	all_philos_ate_enough(t_data *data)
 	return (result);
 }
 
-void	monitor_simulation(t_data *data)
+static bool	check_phil_death(t_data *data, int i)
 {
 	long long	time_since_meal;
+
+	pthread_mutex_lock(&data->death_mutex);
+	time_since_meal = get_time_ms() - data->philos[i].last_meal_time;
+	if (time_since_meal > data->time_to_die)
+	{
+		data->dead_flag = 1;
+		printf(
+			"%lld %d died\n",
+			get_time_ms() - data->start_time,
+			data->philos[i].id);
+		pthread_mutex_unlock(&data->death_mutex);
+		return (true);
+	}
+	pthread_mutex_unlock(&data->death_mutex);
+	return (false);
+}
+
+void	monitor_simulation(t_data *data)
+{
 	int			i;
 
 	while (42)
@@ -41,16 +60,8 @@ void	monitor_simulation(t_data *data)
 		i = 0;
 		while (i < data->n_philos)
 		{
-			pthread_mutex_lock(&data->death_mutex);
-			time_since_meal = get_time_ms() - data->philos[i].last_meal_time;
-			if (time_since_meal > data->time_to_die)
-			{
-				data->dead_flag = 1;
-				printf("%lld %d died\n", get_time_ms() - data->start_time, data->philos[i].id);
-				pthread_mutex_unlock(&data->death_mutex);
+			if (check_phil_death(data, i))
 				return ;
-			}
-			pthread_mutex_unlock(&data->death_mutex);
 			i++;
 		}
 		if (data->must_eat_count != -1 && all_philos_ate_enough(data))
