@@ -54,7 +54,9 @@ bool	validate_args(int argc, char *argv[])
 	{
 		if (!is_valid_integer(argv[i]))
 		{
-			printf("Error: Invalid argument '%s' (must be a positive number)\n", argv[i]);
+			printf(
+				"Error: Invalid argument '%s' (must be a positive number)\n",
+				argv[i]);
 			return (false);
 		}
 		i++;

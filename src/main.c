@@ -32,7 +32,10 @@ static bool	create_threads(t_data *data)
 	i = 0;
 	while (i < data->n_philos)
 	{
-		if (pthread_create(&data->philos[i].thread, NULL, philosopher_routine, &data->philos[i]) != 0)
+		if (pthread_create(
+				&data->philos[i].thread,
+				NULL, philosopher_routine,
+				&data->philos[i]) != 0)
 		{
 			printf("Error: failed to create philosopher thread %d\n", i + 1);
 			data->dead_flag = 1;
@@ -61,9 +64,7 @@ static void	join_threads(t_data *data)
 	}
 }
 
-
-
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_logos	logos;
 	t_data	data;

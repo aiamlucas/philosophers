@@ -20,7 +20,6 @@ static void	destroy_mutexes(t_data *data)
 void	cleanup(t_data *data)
 {
 	destroy_mutexes(data);
-
 	if (data->chopsticks)
 	{
 		free(data->chopsticks);

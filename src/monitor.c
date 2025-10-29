@@ -23,7 +23,7 @@ bool	all_philos_ate_enough(t_data *data)
 		if (data->philos[i].meals_eaten < data->must_eat_count)
 		{
 			result = false;
-			break;
+			break ;
 		}
 		i++;
 	}

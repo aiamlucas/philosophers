@@ -10,7 +10,7 @@ long long	get_time_ms(void)
 
 void	ft_usleep_check(t_data *data, long long milliseconds)
 {
-	long long start;
+	long long	start;
 
 	start = get_time_ms();
 	while (get_time_ms() - start < milliseconds)

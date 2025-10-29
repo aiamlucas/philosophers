@@ -27,7 +27,7 @@ static bool	philo_sleep(t_philo *philo)
 	return (true);
 }
 
-static bool philo_think(t_philo *philo)
+static bool	philo_think(t_philo *philo)
 {
 	print_status(philo, "is thinking");
 	if (simulation_ended(philo->data))
