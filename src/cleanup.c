@@ -1,4 +1,5 @@
 #include "philo.h"
+#include <stdlib.h>
 
 static void	destroy_mutexes(t_data *data)
 {

@@ -1,4 +1,5 @@
 #include "philo.h"
+#include <limits.h>
 
 static bool	is_overflow(int num, int digit, int signal)
 {

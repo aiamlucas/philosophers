@@ -1,15 +1,10 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <stdio.h>
-# include <limits.h>
-# include <stdlib.h>
 # include <stdbool.h>
-# include <unistd.h>
 # include <pthread.h>
-# include <sys/time.h>
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int				n_philos;
 	int				time_to_die;
@@ -17,14 +12,14 @@ typedef struct	s_data
 	int				time_to_sleep;
 	int				must_eat_count;
 	long long		start_time;
-	int				dead_flag; // flag for see if someone died
+	int				dead_flag;
 	pthread_mutex_t	*chopsticks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	death_mutex;
-	struct s_philo	*philos; // array of philosophers
+	struct s_philo	*philos;
 }	t_data;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int			id;
 	pthread_t	thread;
@@ -32,16 +27,15 @@ typedef struct	s_philo
 	int			right_chopstick;
 	long long	last_meal_time;
 	int			meals_eaten;
-	t_data		*data; // pointer to the shared data
+	t_data		*data;
 }	t_philo;
 
-
-typedef struct	s_logos
+typedef struct s_logos
 {
-	int	n_philos; 
-    int	time_to_die;
-    int	time_to_eat; 
-    int	time_to_sleep;
+	int	n_philos;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
 	int	must_eat_count;
 }	t_logos;
 
@@ -65,6 +59,9 @@ void		drop_chopsticks(t_philo *philo);
 void		monitor_simulation(t_data *data);
 bool		simulation_ended(t_data *data);
 bool		all_philos_ate_enough(t_data *data);
+bool		validate_philo_count(int n_philos);
+bool		validate_timings(t_logos *logos);
+bool		validate_must_eat(int must_eat_count);
 void		cleanup_partial_init(t_data *data, int stage);
 void		cleanup(t_data *data);
 

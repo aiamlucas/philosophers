@@ -1,4 +1,6 @@
 #include "philo.h"
+#include <stdio.h>
+#include <unistd.h>
 
 bool	simulation_ended(t_data *data)
 {

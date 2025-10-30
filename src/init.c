@@ -1,4 +1,6 @@
 #include "philo.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void	cleanup_partial_init(t_data *data, int stage)
 {

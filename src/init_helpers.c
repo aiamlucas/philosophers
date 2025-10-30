@@ -1,4 +1,5 @@
 #include "philo.h"
+#include <stdlib.h>
 
 bool	init_chopsticks(t_data *data)
 {

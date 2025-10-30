@@ -1,4 +1,5 @@
 #include "philo.h"
+#include <stdio.h>
 
 bool	validate_number_format(const char *str)
 {
@@ -66,36 +67,12 @@ bool	validate_args(int argc, char *argv[])
 
 static bool	validate_ranges(t_logos *logos)
 {
-	if (logos->n_philos <= 0)
-	{
-		printf("Error: Number of philosophers must be positive\n");
+	if (!validate_philo_count(logos->n_philos))
 		return (false);
-	}
-	if (logos->n_philos > 200)
-	{
-		printf("Error: Too many philosophers (max 200)\n");
+	if (!validate_timings(logos))
 		return (false);
-	}
-	if (logos->time_to_die <= 0)
-	{
-		printf("Error: time_to_die must be positive\n");
+	if (!validate_must_eat(logos->must_eat_count))
 		return (false);
-	}
-	if (logos->time_to_eat <= 0)
-	{
-		printf("Error: time_to_eat must be positive\n");
-		return (false);
-	}
-	if (logos->time_to_sleep <= 0)
-	{
-		printf("Error: time_to_sleep must be positive\n");
-		return (false);
-	}
-	if (logos->must_eat_count != -1 && logos->must_eat_count <= 0)
-	{
-		printf("Error: must_eat_count must be positive\n");
-		return (false);
-	}
 	return (true);
 }
 

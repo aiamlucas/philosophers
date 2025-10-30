@@ -1,4 +1,5 @@
 #include "philo.h"
+#include <unistd.h>
 
 static bool	philo_eat(t_philo *philo)
 {
