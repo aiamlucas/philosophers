@@ -16,6 +16,7 @@ SRC = src/main.c
 SRC += src/init.c
 SRC += src/init_helpers.c
 SRC += src/parser.c
+SRC += src/parser_utils.c
 SRC += src/utils.c
 SRC += src/cleanup.c
 SRC += src/monitor.c
