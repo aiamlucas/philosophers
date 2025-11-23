@@ -17,8 +17,6 @@ static bool	init_program(t_logos *logos, t_data *data, int argc, char *argv[])
 		return (false);
 	if (!parse_logos(logos, argc, argv))
 		return (false);
-	if (!init_simulation(logos))
-		return (false);
 	if (!init_data(data, logos))
 	{
 		printf("Error: failed to initialize data\n");

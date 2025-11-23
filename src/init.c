@@ -24,20 +24,6 @@ void	cleanup_partial_init(t_data *data, int stage)
 	}
 }
 
-bool	init_simulation(t_logos *logos)
-{
-	printf("Dinner table ready\n");
-	printf(" Philosophers: %d\n", logos->n_philos);
-	printf(" Time to die: %d ms\n", logos->time_to_die);
-	printf(" Time to eat: %d ms\n", logos->time_to_eat);
-	printf(" Time to sleep: %d ms\n", logos->time_to_sleep);
-	if (logos->must_eat_count != -1)
-		printf(" Must eat count: %d times\n", logos->must_eat_count);
-	else
-		printf(" Must eat count: unlimited\n");
-	return (true);
-}
-
 bool	init_data(t_data *data, t_logos *logos)
 {
 	data->chopsticks = NULL;

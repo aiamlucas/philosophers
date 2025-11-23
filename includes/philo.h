@@ -45,7 +45,6 @@ bool		validate_number_format(const char *str);
 bool		is_valid_integer(const char *str);
 bool		validate_args(int argc, char *argv[]);
 bool		parse_logos(t_logos *logos, int argc, char *argv[]);
-bool		init_simulation(t_logos *logos);
 bool		init_data(t_data *data, t_logos *logos);
 bool		init_chopsticks(t_data *data);
 bool		init_mutexes(t_data *data);
