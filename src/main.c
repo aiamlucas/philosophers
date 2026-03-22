@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:50 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 13:37:07 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:57:42 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int	main(int argc, char *argv[])
 	monitor_simulation(&data);
 	usleep(10000);
 	join_threads(&data);
-	cleanup(&data); 
-	return (EXIT_SUCCESS); 
+	cleanup(&data);
+	return (EXIT_SUCCESS);
 }

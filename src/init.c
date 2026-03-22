@@ -6,35 +6,12 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:25 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 13:31:58 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:55:44 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdlib.h>
 #include <stdio.h>
-
-void	cleanup_partial_init(t_data *data, int stage)
-{
-	int	i;
-
-	if (stage >= 4 && data->philos)
-		free(data->philos);
-	if (stage >= 3)
-		pthread_mutex_destroy(&data->death_mutex);
-	if (stage >= 2)
-		pthread_mutex_destroy(&data->print_mutex);
-	if (stage >= 1 && data->forks)
-	{
-		i = 0;
-		while (i < data->n_philos)
-		{
-			pthread_mutex_destroy(&data->forks[i]);
-			i++;
-		}
-		free(data->forks);
-	}
-}
 
 bool	init_data(t_data *data, t_logos *logos)
 {
