@@ -6,13 +6,12 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:50 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 12:33:52 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:22:08 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <stdio.h>
-#include <sys/time.h>
 #include <unistd.h>
 #include <stdlib.h>
 
