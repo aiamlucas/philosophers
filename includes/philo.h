@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:34:37 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 12:45:14 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:34:56 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ bool		is_valid_integer(const char *str);
 bool		validate_args(int argc, char *argv[]);
 bool		parse_logos(t_logos *logos, int argc, char *argv[]);
 bool		init_data(t_data *data, t_logos *logos);
+bool		init_program(t_logos *logos, t_data *data, int argc, char *argv[]);
 bool		init_forks(t_data *data);
 bool		init_mutexes(t_data *data);
 bool		init_philosophers(t_data *data);
 long long	get_time_ms(void);
 void		ft_usleep_check(t_data *data, long long milliseconds);
+void		handle_single_philo(t_data *data);
 void		*philosopher_routine(void *arg);
 void		print_status(t_philo *philo, char *status);
 void		take_forks(t_philo *philo);
@@ -75,5 +77,7 @@ bool		validate_timings(t_logos *logos);
 bool		validate_must_eat(int must_eat_count);
 void		cleanup_partial_init(t_data *data, int stage);
 void		cleanup(t_data *data);
+bool		create_threads(t_data *data);
+void		join_threads(t_data *data);
 
 #endif

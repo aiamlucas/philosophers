@@ -6,12 +6,13 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:25 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 12:33:28 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:31:58 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	cleanup_partial_init(t_data *data, int stage)
 {
@@ -52,5 +53,19 @@ bool	init_data(t_data *data, t_logos *logos)
 		return (false);
 	if (!init_philosophers(data))
 		return (false);
+	return (true);
+}
+
+bool	init_program(t_logos *logos, t_data *data, int argc, char *argv[])
+{
+	if (!validate_args(argc, argv))
+		return (false);
+	if (!parse_logos(logos, argc, argv))
+		return (false);
+	if (!init_data(data, logos))
+	{
+		printf("Error: failed to initialize data\n");
+		return (false);
+	}
 	return (true);
 }

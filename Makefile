@@ -6,7 +6,7 @@
 #    By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/22 12:35:11 by lbueno-m          #+#    #+#              #
-#    Updated: 2026/03/22 12:35:13 by lbueno-m         ###   ########.fr        #
+#    Updated: 2026/03/22 13:35:18 by lbueno-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC += src/utils.c
 SRC += src/cleanup.c
 SRC += src/monitor.c
 SRC += src/philosopher.c
+SRC += src/threads.c
 SRC += helpers/ft_atoi_safe.c
 SRC += helpers/ft_isspace.c
 
