@@ -22,3 +22,6 @@ compile_commands.json
 
 # for valgrind
 vgcore.*
+
+# tests
+philosopher-tests.sh
