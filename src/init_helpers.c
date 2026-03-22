@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:44 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 12:33:45 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:49:44 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	init_forks(t_data *data)
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 		{
 			data->n_philos = i;
-			cleanup_partial_init(data, 1);
+			cleanup_partial_init(data, STAGE_INIT_FORKS);
 			return (false);
 		}
 		i++;
@@ -38,12 +38,12 @@ bool	init_mutexes(t_data *data)
 {
 	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
 	{
-		cleanup_partial_init(data, 1);
+		cleanup_partial_init(data, STAGE_INIT_PRINT_MUTEX);
 		return (false);
 	}
 	if (pthread_mutex_init(&data->death_mutex, NULL) != 0)
 	{
-		cleanup_partial_init(data, 2);
+		cleanup_partial_init(data, STAGE_INIT_DEATH_MUTEX);
 		return (false);
 	}
 	return (true);
@@ -56,7 +56,7 @@ bool	init_philosophers(t_data *data)
 	data->philos = malloc(sizeof(t_philo) * data->n_philos);
 	if (!data->philos)
 	{
-		cleanup_partial_init(data, 3);
+		cleanup_partial_init(data, STAGE_INIT_PHILOS);
 		return (false);
 	}
 	i = 0;

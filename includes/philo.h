@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:34:37 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 13:34:56 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:49:46 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,14 @@ typedef struct s_logos
 	int	time_to_sleep;
 	int	must_eat_count;
 }	t_logos;
+
+typedef enum e_init_stage
+{
+	STAGE_INIT_FORKS = 1,
+	STAGE_INIT_PRINT_MUTEX = 2,
+	STAGE_INIT_DEATH_MUTEX = 3,
+	STAGE_INIT_PHILOS = 4
+}	t_init_stage;
 
 bool		ft_isspace(int c);
 bool		ft_safe_atoi(const char *str, int *result);
