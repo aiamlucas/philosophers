@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:56 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 12:33:59 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 13:10:09 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ static bool	check_phil_death(t_data *data, int i)
 	if (time_since_meal > data->time_to_die)
 	{
 		data->dead_flag = 1;
+		pthread_mutex_lock(&data->print_mutex);
 		printf(
 			"%lld %d died\n",
 			get_time_ms() - data->start_time,
 			data->philos[i].id);
+		pthread_mutex_unlock(&data->print_mutex);
 		pthread_mutex_unlock(&data->death_mutex);
 		return (true);
 	}
