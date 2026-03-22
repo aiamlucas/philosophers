@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:34:20 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 13:29:46 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 19:32:30 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 void	handle_single_philo(t_data *data)
 {
 	printf("0 1 has taken a fork\n");
-	usleep(data->time_to_die * 1000);
-	printf("%d 1 died\n", data->time_to_die);
+	ft_usleep_check(data, data->time_to_die);
+	printf("%lld 1 died\n", get_time_ms() - data->start_time);
 }
 
 static bool	philo_eat(t_philo *philo)

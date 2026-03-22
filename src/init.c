@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:25 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 13:55:44 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 19:34:03 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ bool	init_data(t_data *data, t_logos *logos)
 	data->forks = NULL;
 	data->philos = NULL;
 	data->n_philos = logos->n_philos;
-	data->time_to_die = logos->time_to_die;
-	data->time_to_eat = logos->time_to_eat;
-	data->time_to_sleep = logos->time_to_sleep;
+	data->time_to_die = (long long)logos->time_to_die;
+	data->time_to_eat = (long long)logos->time_to_eat;
+	data->time_to_sleep = (long long)logos->time_to_sleep;
 	data->must_eat_count = logos->must_eat_count;
 	data->start_time = get_time_ms();
 	data->dead_flag = 0;
