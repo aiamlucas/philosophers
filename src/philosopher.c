@@ -15,10 +15,10 @@
 
 static bool	philo_eat(t_philo *philo)
 {
-	take_chopsticks(philo);
+	take_forks(philo);
 	if (simulation_ended(philo->data))
 	{
-		drop_chopsticks(philo);
+		drop_forks(philo);
 		return (false);
 	}
 	print_status(philo, "is eating");
@@ -27,7 +27,7 @@ static bool	philo_eat(t_philo *philo)
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->data->death_mutex);
 	ft_usleep_check(philo->data, philo->data->time_to_eat);
-	drop_chopsticks(philo);
+	drop_forks(philo);
 	return (true);
 }
 

@@ -23,21 +23,21 @@ void	cleanup_partial_init(t_data *data, int stage)
 		pthread_mutex_destroy(&data->death_mutex);
 	if (stage >= 2)
 		pthread_mutex_destroy(&data->print_mutex);
-	if (stage >= 1 && data->chopsticks)
+	if (stage >= 1 && data->forks)
 	{
 		i = 0;
 		while (i < data->n_philos)
 		{
-			pthread_mutex_destroy(&data->chopsticks[i]);
+			pthread_mutex_destroy(&data->forks[i]);
 			i++;
 		}
-		free(data->chopsticks);
+		free(data->forks);
 	}
 }
 
 bool	init_data(t_data *data, t_logos *logos)
 {
-	data->chopsticks = NULL;
+	data->forks = NULL;
 	data->philos = NULL;
 	data->n_philos = logos->n_philos;
 	data->time_to_die = logos->time_to_die;
@@ -46,7 +46,7 @@ bool	init_data(t_data *data, t_logos *logos)
 	data->must_eat_count = logos->must_eat_count;
 	data->start_time = get_time_ms();
 	data->dead_flag = 0;
-	if (!init_chopsticks(data))
+	if (!init_forks(data))
 		return (false);
 	if (!init_mutexes(data))
 		return (false);

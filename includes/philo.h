@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:34:37 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 12:34:39 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 12:45:14 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_data
 	int				must_eat_count;
 	long long		start_time;
 	int				dead_flag;
-	pthread_mutex_t	*chopsticks;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	death_mutex;
 	struct s_philo	*philos;
@@ -35,8 +35,8 @@ typedef struct s_philo
 {
 	int			id;
 	pthread_t	thread;
-	int			left_chopstick;
-	int			right_chopstick;
+	int			left_fork;
+	int			right_fork;
 	long long	last_meal_time;
 	int			meals_eaten;
 	t_data		*data;
@@ -58,15 +58,15 @@ bool		is_valid_integer(const char *str);
 bool		validate_args(int argc, char *argv[]);
 bool		parse_logos(t_logos *logos, int argc, char *argv[]);
 bool		init_data(t_data *data, t_logos *logos);
-bool		init_chopsticks(t_data *data);
+bool		init_forks(t_data *data);
 bool		init_mutexes(t_data *data);
 bool		init_philosophers(t_data *data);
 long long	get_time_ms(void);
 void		ft_usleep_check(t_data *data, long long milliseconds);
 void		*philosopher_routine(void *arg);
 void		print_status(t_philo *philo, char *status);
-void		take_chopsticks(t_philo *philo);
-void		drop_chopsticks(t_philo *philo);
+void		take_forks(t_philo *philo);
+void		drop_forks(t_philo *philo);
 void		monitor_simulation(t_data *data);
 bool		simulation_ended(t_data *data);
 bool		all_philos_ate_enough(t_data *data);

@@ -53,29 +53,29 @@ void	print_status(t_philo *philo, char *status)
 	}
 }
 
-void	take_chopsticks(t_philo *philo)
+void	take_forks(t_philo *philo)
 {
 	int	first;
 	int	second;
 
-	if (philo->left_chopstick < philo->right_chopstick)
+	if (philo->left_fork < philo->right_fork)
 	{
-		first = philo->left_chopstick;
-		second = philo->right_chopstick;
+		first = philo->left_fork;
+		second = philo->right_fork;
 	}
 	else
 	{
-		first = philo->right_chopstick;
-		second = philo->left_chopstick;
+		first = philo->right_fork;
+		second = philo->left_fork;
 	}
-	pthread_mutex_lock(&philo->data->chopsticks[first]);
-	print_status(philo, "has taken a chopstick");
-	pthread_mutex_lock(&philo->data->chopsticks[second]);
-	print_status(philo, "has taken a chopstick");
+	pthread_mutex_lock(&philo->data->forks[first]);
+	print_status(philo, "has taken a fork");
+	pthread_mutex_lock(&philo->data->forks[second]);
+	print_status(philo, "has taken a fork");
 }
 
-void	drop_chopsticks(t_philo *philo)
+void	drop_forks(t_philo *philo)
 {
-	pthread_mutex_unlock(&philo->data->chopsticks[philo->left_chopstick]);
-	pthread_mutex_unlock(&philo->data->chopsticks[philo->right_chopstick]);
+	pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
+	pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
 }

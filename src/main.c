@@ -18,7 +18,7 @@
 
 static void	handle_single_philo(t_data *data)
 {
-	printf("0 1 has taken a chopstick\n");
+	printf("0 1 has taken a fork\n");
 	usleep(data->time_to_die * 1000);
 	printf("%d 1 died\n", data->time_to_die);
 }

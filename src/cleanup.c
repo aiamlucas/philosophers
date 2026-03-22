@@ -18,11 +18,11 @@ static void	destroy_mutexes(t_data *data)
 	int	i;
 
 	i = 0;
-	if (data->chopsticks)
+	if (data->forks)
 	{
 		while (i < data->n_philos)
 		{
-			pthread_mutex_destroy(&data->chopsticks[i]);
+			pthread_mutex_destroy(&data->forks[i]);
 			i++;
 		}
 	}
@@ -33,10 +33,10 @@ static void	destroy_mutexes(t_data *data)
 void	cleanup(t_data *data)
 {
 	destroy_mutexes(data);
-	if (data->chopsticks)
+	if (data->forks)
 	{
-		free(data->chopsticks);
-		data->chopsticks = NULL;
+		free(data->forks);
+		data->forks = NULL;
 	}
 	if (data->philos)
 	{
