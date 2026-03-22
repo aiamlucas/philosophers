@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:34:37 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 13:49:46 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 19:30:56 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 typedef struct s_data
 {
 	int				n_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				must_eat_count;
+	long long		time_to_die;
+	long long		time_to_eat;
+	long long		time_to_sleep;
 	long long		start_time;
+	int				must_eat_count;
 	int				dead_flag;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
@@ -83,9 +83,9 @@ bool		all_philos_ate_enough(t_data *data);
 bool		validate_philo_count(int n_philos);
 bool		validate_timings(t_logos *logos);
 bool		validate_must_eat(int must_eat_count);
-void		cleanup_partial_init(t_data *data, int stage);
 void		cleanup(t_data *data);
 bool		create_threads(t_data *data);
 void		join_threads(t_data *data);
+void		cleanup_partial_init(t_data *data, t_init_stage stage);
 
 #endif

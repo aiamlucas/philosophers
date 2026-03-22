@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:35 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 13:55:19 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/22 19:40:53 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ void	cleanup(t_data *data)
 	}
 }
 
-void	cleanup_partial_init(t_data *data, int stage)
+void	cleanup_partial_init(t_data *data, t_init_stage stage)
 {
 	int	i;
 
-	if (stage >= 4 && data->philos)
+	if (stage >= STAGE_INIT_PHILOS && data->philos)
 		free(data->philos);
-	if (stage >= 3)
+	if (stage >= STAGE_INIT_DEATH_MUTEX)
 		pthread_mutex_destroy(&data->death_mutex);
-	if (stage >= 2)
+	if (stage >= STAGE_INIT_PRINT_MUTEX)
 		pthread_mutex_destroy(&data->print_mutex);
-	if (stage >= 1 && data->forks)
+	if (stage >= STAGE_INIT_FORKS && data->forks)
 	{
 		i = 0;
 		while (i < data->n_philos)
