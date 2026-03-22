@@ -25,3 +25,6 @@ vgcore.*
 
 # tests
 philosopher-tests.sh
+
+#docker 
+Dockerfile
