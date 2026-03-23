@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:34:04 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/23 10:53:43 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/23 11:40:02 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,17 @@
 #include <stdio.h>
 #include <limits.h>
 
-bool	validate_number_format(const char *str)
-{
-	if (!*str)
-		return (false);
-	if (*str < '0' || *str > '9')
-		return (false);
-	while (*str >= '0' && *str <= '9')
-		str++;
-	while (*str && ft_isspace(*str))
-		str++;
-	if (*str != '\0')
-		return (false);
-	return (true);
-}
-
 bool	is_valid_integer(const char *str)
 {
-	const char	*num_start;
 	int			dummy_value;
 
 	if (!str || !*str)
 		return (false);
 	while (*str && ft_isspace(*str))
 		str++;
-	if (!*str)
+	if (*str == '-' || *str == '+')
 		return (false);
-	num_start = str;
-	if (*str == '-')
-		return (false);
-	if (*str == '+')
-		str++;
-	if (!*str || !(*str >= '0' && *str <= '9'))
-		return (false);
-	if (!validate_number_format(str))
-		return (false);
-	return (ft_safe_atoi(num_start, &dummy_value));
+	return (ft_safe_atoi(str, &dummy_value));
 }
 
 bool	validate_args(int argc, char *argv[])
