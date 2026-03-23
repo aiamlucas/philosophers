@@ -6,14 +6,14 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:44 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 13:49:44 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/23 16:04:43 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <stdlib.h>
 
-bool	init_forks(t_data *data)
+bool	init_forks_mutexes(t_data *data)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ bool	init_forks(t_data *data)
 	return (true);
 }
 
-bool	init_mutexes(t_data *data)
+bool	init_print_death_mutexes(t_data *data)
 {
 	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
 	{

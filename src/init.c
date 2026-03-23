@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:33:25 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 19:34:03 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/23 16:03:44 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ bool	init_data(t_data *data, t_logos *logos)
 	data->must_eat_count = logos->must_eat_count;
 	data->start_time = get_time_ms();
 	data->dead_flag = 0;
-	if (!init_forks(data))
+	if (!init_forks_mutexes(data))
 		return (false);
-	if (!init_mutexes(data))
+	if (!init_print_death_mutexes(data))
 		return (false);
 	if (!init_philosophers(data))
 		return (false);

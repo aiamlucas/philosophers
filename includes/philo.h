@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:34:37 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/22 19:30:56 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/23 16:04:10 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ bool		validate_args(int argc, char *argv[]);
 bool		parse_logos(t_logos *logos, int argc, char *argv[]);
 bool		init_data(t_data *data, t_logos *logos);
 bool		init_program(t_logos *logos, t_data *data, int argc, char *argv[]);
-bool		init_forks(t_data *data);
-bool		init_mutexes(t_data *data);
+bool		init_forks_mutexes(t_data *data);
+bool		init_print_death_mutexes(t_data *data);
 bool		init_philosophers(t_data *data);
 long long	get_time_ms(void);
 void		ft_usleep_check(t_data *data, long long milliseconds);
