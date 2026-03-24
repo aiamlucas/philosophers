@@ -6,7 +6,7 @@
 /*   By: lbueno-m <lbueno-m@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 12:34:04 by lbueno-m          #+#    #+#             */
-/*   Updated: 2026/03/23 11:40:02 by lbueno-m         ###   ########.fr       */
+/*   Updated: 2026/03/24 18:34:35 by lbueno-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ bool	validate_args(int argc, char *argv[])
 	{
 		if (!is_valid_integer(argv[i]))
 		{
-			printf(
-				"Error: Invalid argument '%s' (must be a positive number between 1 and %d)\n",
-				argv[i], INT_MAX);
+			printf("Error: Invalid argument '%s' ", argv[i]);
+			printf("(must be a positive number between 1 and %d)\n", INT_MAX);
 			return (false);
 		}
 		i++;
